@@ -1,39 +1,46 @@
-import java.util.Scanner;
-
 public class Main {
 
     public static void main(String[] args) {
 
-        Scanner scanner = new Scanner(System.in);
+        ConsoleReader consoleReader = new ConsoleReader();
+        StepTracker stepTracker = new StepTracker();
         boolean isBreak = false;
 
         while (!isBreak) {
-            int command;
-            Operations operations;
             printMenu();
-
-            if (scanner.hasNextInt()) {
-                command = scanner.nextInt();
-                operations = Operations.lookup(command);
-            } else {
-                System.out.println("Вы ввели некорректное значение - " + scanner.next() + ". Введите целое число!");
-                continue;
-            }
+            Operations operations = consoleReader.readCommand();
+            int month = 0;
+            int day = 0;
+            int steps = 0;
 
             switch (operations) {
                 case ENTER_STEPS:
-
+                    month = consoleReader.readMonth();
+                    day = consoleReader.readDay();
+                    steps = consoleReader.readSteps();
+                    stepTracker.saveStepsCount(month, day, steps);
+                    break;
                 case PRINT_MONTH_STATISTIC:
-
+                    month = consoleReader.readMonth();
+                    stepTracker.showMonthlyStatistic(month);
+                    break;
                 case CHANGE_GOAL:
-
+                    steps = consoleReader.readSteps();
+                    stepTracker.changeGoal(steps);
+                    break;
                 case EXIT:
-
+                    isBreak = true;
+                    break;
                 case INCORRECT_NUMBER:
                     System.out.println("Такого дейставия нет, повторите ввод!");
                     break;
+                case NOT_NUMBER:
+                    System.out.println("Вы ввели некорректное значение. Введите целое число!");
+                    break;
             }
         }
+
+        consoleReader.closeScanner();
     }
 
     private static void printMenu() {

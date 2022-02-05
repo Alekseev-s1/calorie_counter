@@ -4,7 +4,8 @@ public enum Operations {
     PRINT_MONTH_STATISTIC(2),
     CHANGE_GOAL(3),
     EXIT(4),
-    INCORRECT_NUMBER(99);
+    INCORRECT_NUMBER(-1),
+    NOT_NUMBER(-2);
 
     private final int number;
 
