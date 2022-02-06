@@ -122,32 +122,7 @@ public class StepTracker {
     }
 
     private static String convertMonthNumberToName(int monthNumber) {
-        String monthName = null;
-        if (monthNumber == 1) {
-            monthName = "Январь";
-        } else if (monthNumber == 2) {
-            monthName = "Февраль";
-        } else if (monthNumber == 3) {
-            monthName = "Март";
-        } else if (monthNumber == 4) {
-            monthName = "Апрель";
-        } else if (monthNumber == 5) {
-            monthName = "Май";
-        } else if (monthNumber == 6) {
-            monthName = "Июнь";
-        } else if (monthNumber == 7) {
-            monthName = "Июль";
-        } else if (monthNumber == 8) {
-            monthName = "Август";
-        } else if (monthNumber == 9) {
-            monthName = "Сентябрь";
-        } else if (monthNumber == 10) {
-            monthName = "Октябрь";
-        } else if (monthNumber == 11) {
-            monthName = "Ноябрь";
-        } else if (monthNumber == 12) {
-            monthName = "Декабрь";
-        }
+        String monthName = Months.lookup(monthNumber).getName();
         return monthName;
     }
 }
